@@ -1,36 +1,24 @@
-// index.js
+#!/usr/bin/env node
 
+const dotenv = require("dotenv");
+const cors = require("cors");
+const morgan = require("morgan");
 const express = require("express");
-const { graphqlHTTP } = require("express-graphql");
-const { buildSchema } = require("graphql");
+const { log } = require("mercedlogger");
+const UserRouter = require("./controllers/User");
 
-// Define your GraphQL schema
-const schema = buildSchema(`
-   type Query {
-      hello: String
-   }
-`);
+dotenv.config();
+const { PORT = 3000 } = process.env;
 
-// Define resolvers
-const root = {
-  hello: () => "Hello, GraphQL World!",
-};
-
-// Create an Express app
 const app = express();
 
-// Setup GraphQL endpoint
-app.use(
-  "/graphql",
-  graphqlHTTP({
-    schema: schema,
-    rootValue: root,
-    graphiql: true, // Enable GraphiQL for easy testing
-  })
-);
+app.use(cors());
+app.use(morgan("tiny"));
+app.use(express.json());
 
-// Start the server
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server is running at http://localhost:${PORT}/graphql`);
+app.get("/", (req, res) => {
+  res.send("this is the test route to make sure server is working");
 });
+app.use("/auth", UserRouter);
+
+app.listen(PORT, () => log.green("SERVER STATUS", `Listening on port ${PORT}`));
