@@ -2,10 +2,10 @@
 import axios from "axios";
 import Link from "next/link";
 import Image from "next/image";
+import { useState } from "react";
 import { FiLoader } from "react-icons/fi";
-import { useEffect, useState } from "react";
 import { useUserContext } from "@/contexts";
-import { notifyCustom, notifySuccess } from "@/helpers";
+import { notifyCustom, notifyError, notifySuccess } from "@/helpers";
 import { useRouter } from "next/navigation";
 
 const Register = () => {
@@ -51,13 +51,13 @@ const Register = () => {
       dispatch({ type: "SET_USER", payload: res?.data });
       setFormData(initialFormData);
     } catch (error) {
-      console.error(error);
+      notifyError(error);
     }
   };
 
   return (
     <section className="min-h-screen flex justify-betwen h-screen">
-      <div className="w-2/5 flex bg-secondary justify-center h-full items-center border p-12">
+      <div className="hidden md:flex w-2/5 bg-secondary justify-center h-full items-center border p-12">
         <Image
           src="/static/images/auth/welcome.svg"
           width={500}
@@ -65,7 +65,7 @@ const Register = () => {
           alt="login"
         />
       </div>
-      <div className="px-12 flex flex-col justify-center items-center w-3/5">
+      <div className="px-12 flex flex-col justify-center items-center w-full md:w-3/5">
         <h1 className="text-5xl font-semibold">Sign Up</h1>
         <form
           className="flex flex-col gap-2 mt-8"

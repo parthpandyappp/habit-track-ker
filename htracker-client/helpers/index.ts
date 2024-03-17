@@ -1,1 +1,1 @@
-export { notifySuccess, notifyCustom } from "./toast-helpers";
+export { notifySuccess, notifyCustom, notifyError } from "./toast-helpers";

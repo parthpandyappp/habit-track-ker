@@ -31,7 +31,8 @@ router.post("/login", async (req, res) => {
           { username: user.username, _id: user._id },
           SECRET
         );
-        res.json({ token });
+        const { password, ...userWithoutPassword } = user.toObject();
+        res.json({ user: userWithoutPassword, token });
       } else {
         res.status(400).json({ error: "password doesn't match" });
       }

@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export const NavBar = () => {
   return (
-    <nav className="flex justify-between px-28 py-4">
+    <nav className="flex justify-between px-8 py-2 items-center md:px-28 md:py-4">
       <div className="flex gap-2 items-center">
         <Image
           src="/static/images/logo.png"
