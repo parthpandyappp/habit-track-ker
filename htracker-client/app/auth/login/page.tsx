@@ -1,8 +1,9 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const Login = () => {
   return (
-    <div className="min-h-screen flex justify-betwen h-screen">
+    <section className="min-h-screen flex justify-betwen h-screen">
       <div className="w-2/5 flex bg-secondary justify-center h-full items-center border p-12">
         <Image
           src="/static/images/auth/login.svg"
@@ -22,7 +23,7 @@ const Login = () => {
               placeholder="habitbuilder"
               type="text"
               name="username"
-              className="border rounded-md px-2 py-1 focus:outline-none focus:border-secondary"
+              className="border-2 rounded-md px-2 py-1 focus:outline-none focus:border-secondary"
             />
           </section>
           <section className="flex flex-col gap-1">
@@ -33,7 +34,7 @@ const Login = () => {
               placeholder="••••••••••"
               type="password"
               name="pswd"
-              className="border rounded-md px-2 py-1 focus:outline-none focus:border-secondary"
+              className="border-2 rounded-md px-2 py-1 focus:outline-none focus:border-secondary"
             />
           </section>
           <section className="mt-4 text-center">
@@ -43,16 +44,18 @@ const Login = () => {
           </section>
         </form>
         <div className="mt-6">
-          <p>
-            Don&apos;t have an account?
-            <span className="text-secondary underline underline-offset-2 cursor-pointer">
-              {" "}
-              Sign Up for free!
-            </span>
-          </p>
+          <Link href="/auth/register">
+            <p>
+              Don&apos;t have an account?
+              <span className="text-secondary underline underline-offset-2 cursor-pointer">
+                {" "}
+                Sign Up for free!
+              </span>
+            </p>
+          </Link>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

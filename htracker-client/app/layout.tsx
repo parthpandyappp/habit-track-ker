@@ -1,8 +1,9 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { UserProvider } from "@/contexts";
 import { Poppins } from "next/font/google";
-import { NavBar } from "@/components/navbar";
+import { NavBar, ToastProvider } from "@/components";
 
 const inter = Inter({ subsets: ["latin"] });
 const poppins = Poppins({
@@ -22,7 +23,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${poppins.className} bg-primary`}>{children}</body>
+      <body className={`${poppins.className} bg-primary`}>
+        <ToastProvider>
+          <UserProvider>{children}</UserProvider>
+        </ToastProvider>
+      </body>
     </html>
   );
 }

@@ -1,7 +1,9 @@
 "use client";
 import Image from "next/image";
-import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import Hero from "/public/static/images/hero.svg";
+import Link from "next/link";
 
 export default function LandingPage() {
   const [showHindiTitle, setShowHindiTitle] = useState(false);
@@ -25,7 +27,7 @@ export default function LandingPage() {
       }}
       className="flex h-full flex-col items-center justify-center gap-2"
     >
-      <Image src="static/images/hero.svg" alt="hero" width={300} height={100} />
+      <Image src={Hero} alt="hero" width={300} height={100} />
       <h1 className="text-5xl font-bold mt-6 relative flex flex-col items-center justify-center gap-3">
         <div className="flex gap-2 w-[600px] text-center">
           <div className="w-72 text-right">Habit </div>
@@ -53,9 +55,11 @@ export default function LandingPage() {
         <button className="px-8 py-2 border-2 bg-white rounded">
           Learn More
         </button>
-        <button className="px-8 py-2 rounded bg-secondary text-white">
-          Register
-        </button>
+        <Link href="/auth/register">
+          <button className="px-8 py-2 rounded bg-secondary text-white">
+            Register
+          </button>
+        </Link>
       </div>
     </motion.div>
   );

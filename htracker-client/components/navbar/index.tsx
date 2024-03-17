@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 
 export const NavBar = () => {
   return (
@@ -14,9 +15,11 @@ export const NavBar = () => {
         <h1 className="text-xl font-black">hTracker</h1>
       </div>
       <div>
-        <button className="px-4 py-1 rounded bg-secondary text-white">
-          Register
-        </button>
+        <Link href="/auth/register">
+          <button className="px-4 py-1 rounded bg-secondary text-white">
+            Register
+          </button>
+        </Link>
       </div>
     </nav>
   );

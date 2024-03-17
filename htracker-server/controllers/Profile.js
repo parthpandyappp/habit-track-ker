@@ -39,7 +39,7 @@ router.get("/:userId", async (req, res) => {
   try {
     console.log(req.params);
     const userId = req.params.userId;
-    const user = await User.findById(userId);
+    const user = await User.findById(userId).select("-password");
     res.json(user);
   } catch (error) {
     res.status(400).json({ error: "Failed to update listOfHabits" });

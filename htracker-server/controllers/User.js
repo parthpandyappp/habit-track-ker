@@ -13,8 +13,10 @@ router.post("/register", async (req, res) => {
   try {
     req.body.password = await bcrypt.hash(req.body.password, 10);
     const user = await User.create(getInitialValuesForUser(req.body));
-    res.status(201).json(user);
+    const { password, ...userWithoutPassword } = user.toObject();
+    res.status(201).json(userWithoutPassword);
   } catch (error) {
+    console.log(error);
     res.status(400).json({ error });
   }
 });
